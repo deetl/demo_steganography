@@ -7,7 +7,9 @@ The data is embedded into the LSB (least significant bit) of the image's pixels.
 
 2) Usage
     1) Embed
+
     2) Extract
+
     3) Visualize LSB
        
 3) Use in lectures
