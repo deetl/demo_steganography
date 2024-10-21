@@ -6,9 +6,11 @@ This collection of tools demonstrates the simplest way to embed data into images
 The data is embedded into the LSB (least significant bit) of the image's pixels. This causes virtually no visible difference to the image. The first 32 bits (from the first 11 bytes of the image) are used to store the length of the input data. This allows the tool to know how much data to extract when recovering the embedded information.
 
 2) Usage
-2.1) Embed
-2.2) Extract
-2.3) Visualize_LSB
+    1) Embed
+    2) Extract
+    3) Visualize LSB
+       
+3) Use in lectures
 
 **Caution**:
 These tools are intended strictly for educational and demonstration purposes.
