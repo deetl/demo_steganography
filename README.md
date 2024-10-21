@@ -16,9 +16,8 @@ The data is embedded into the LSB (least significant bit) of the image's pixels.
 
 **Caution**:
 These tools are intended strictly for educational and demonstration purposes.
-- There is no error checking**.
+- There is only a little bit of error checking.
 - If you attempt to embed too much data, undefined behavior may occur.
-- The output format is the same as the input format. Therefore, if a lossy format is chosen, the embedded data will not survive after saving.
 - The tool is deliberately simple, meaning the embedded data can be easily detected.
 
 **Serious Warning**:
