@@ -8,7 +8,7 @@ The data is embedded into the LSB (least significant bit) of the image's pixels.
 # Tools
 ## `stego_embed.py` embeds binary data into an image using steganography
 
-## Functionality
+### Functionality
 
 This program embeds binary data (e.g., from a file) into an image using steganography. It does this by modifying specific bits of the image's pixel values while leaving the visual appearance of the image almost unchanged. The program allows the user to specify which bit position to embed the data in and also stores metadata (such as a magic marker, bit position, and data length) at the start of the image.
 
@@ -19,7 +19,7 @@ The steps performed by the program are:
 4. **Store the length of the binary data** (in bits) in the LSBs of the next 11 pixels.
 5. **Embed the actual binary data** in the specified bit position of the remaining pixels.
 
-## Parameters
+### Parameters
 
 `-r`, `--read`: The path to the input image file. The default is `image.png`.
 
@@ -37,7 +37,7 @@ The steps performed by the program are:
 ```
 This command will read the default image (`image.png`), embed the default binary file (`input.txt`) into the least significant bit (LSB) of the pixels, and output the stego image as `output_stego.png`.
 
-#### Custom Execution with Options:
+#### With Options:
 ```
 #> python stego_embed.py -r input_image.png -b my_binary_data.bin -w stego_image_output.png -B 3
 ```
@@ -48,7 +48,7 @@ This command does the following:
 
 ## `stego_extract.py` extract data from steganographic image
 
-### Program Description
+### Functionality
 
 This Python program extracts binary data embedded in a steganographic image. It specifically checks for a **magic marker** (`STEGO`) in the least significant bits (LSBs) of the first few pixels to confirm the presence of hidden data. Once the marker is detected, the program reads the bit position where the data was embedded, extracts the length of the hidden binary data (in bits), and finally recovers the binary data using the stored bit position. The extracted data is saved in the specified binary file.
 
@@ -88,7 +88,7 @@ Data length: 2048 bits (256 bytes)
 
 The extracted binary data has been saved to 'output.txt'.
 
-#### Custom Input and Output:
+#### With Custom Input and Output:
 ```
 #> python stego_extract.py -r my_stego_image.png -w my_extracted_data.bin
 Magic Marker 'STEGO' found.
@@ -138,10 +138,10 @@ No embedded data found: The Magic Marker 'STEGO' was not found.
 
 ## `stego_layer.py` Visualize Bitplane
 
-### Functionality:
+### Functionality
 The program extracts a specific bit plane from the color channels (Red, Green, and Blue) of an image. The bit plane can be selected by the user (between 0 and 7), with the default being bit plane 0 (LSB). The program also offers the option to scale the extracted bit plane to the full 8-bit range (0 or 255) to make the bits in the image more visible. The extracted image can be displayed and saved.
 
-### Parameters:
+### Parameters
 `-r`, `--read` (optional): Path to the input file (image). Default is `image.png`.
 
 `-w`, `--write` (optional): Path to the output file (image). Default is `output_layer.png`.
