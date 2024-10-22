@@ -1,14 +1,49 @@
-# simple_steganography_demo
+# Demo tools for simple image steganography
 
 This collection of tools demonstrates the simplest way to embed data into images using steganography. This tools are inspired by the work of Romana Machado and her famous tool [Stego][1]!
 
 # Basic Idea
 The data is embedded into the LSB (least significant bit) of the image's pixels. This causes virtually no visible difference to the image. The first 29 bits (from the first 11 bytes of the image) are used to store a Magic Header (STEGO), the correct bit level, the data is stored in and the the length of the input data. This allows the tool to know how much data to extract when recovering the embedded information.
 
-# Usage
+# Tools
 ## Embed
 
 ## Extract
+
+## `stego_info.py` check for steganogrphic metadata 
+
+### Functionality
+
+This Python program checks if an image contains embedded data using a steganographic technique. The program looks for a special marker (`STEGO`) in the first few pixels of the image to verify if any hidden data is present. If the `STEGO` marker is found, it extracts and displays the bit position in which the data was embedded and the length of the embedded data in both bits and bytes. If the marker is not found, the program outputs that no embedded data was detected.
+
+1. **Check for the Magic Marker (`STEGO`)**: The program inspects the first 14 pixels of the image to verify if the `STEGO` marker is present.
+2. **Extract Bit Position**: If the `STEGO` marker is found, the program reads the next 4 pixels to extract the bit position in which the data was embedded.
+3. **Extract Data Length**: The program reads the following 11 pixels to determine the length of the embedded data in bits.
+4. **Output**: If the data is found, the program prints the bit position and the size of the embedded data in both bits and bytes. If no data is found, it prints a message saying no embedded data was detected.
+
+### Parameters
+
+The program accepts the following command-line arguments:
+### Parameters:
+`-r`, `--read` (optional): Specifies the path to the image file that should be checked for embedded data. Default is `output_stego.png`.
+
+### Examples
+
+#### Image with embedded data
+
+```
+#> python check_stego_image.py
+Magic Marker 'STEGO' found. Extracting embedded data details...
+Bit position: 3
+Data length: 2048 bits (256 bytes)
+```
+
+#### Image without embedded data
+
+```
+python check_stego_image.py -r my_image_without_data.png
+No embedded data found: The Magic Marker 'STEGO' was not found.
+```
 
 ## `stego_layer.py` Visualize Bitplane
 
