@@ -8,7 +8,64 @@ The data is embedded into the LSB (least significant bit) of the image's pixels.
 # Tools
 ## Embed
 
-## Extract
+## `stego_extract.py` extract data from steganographic image
+
+### Program Description
+
+This Python program extracts binary data embedded in a steganographic image. It specifically checks for a **magic marker** (`STEGO`) in the least significant bits (LSBs) of the first few pixels to confirm the presence of hidden data. Once the marker is detected, the program reads the bit position where the data was embedded, extracts the length of the hidden binary data (in bits), and finally recovers the binary data using the stored bit position. The extracted data is saved in the specified binary file.
+
+### Parameters
+
+The program accepts the following command-line parameters:
+
+`-r`, `--read` (optional): Path to the stego image file from which the data should be extracted. Default is `output_stego.png`.
+
+`-w`, `--write` (optional):  Path to save the extracted  data. Default is `output.txt`.
+
+
+### Steps in the Program
+
+1. **Magic Marker Verification**:  
+   The program first checks the LSBs of the first 14 pixels for the magic marker `STEGO`. If the marker is not found, the program aborts with an error.
+   
+2. **Bit Position Extraction**:  
+   The program extracts the bit position from the next 4 pixels after the magic marker. This bit position indicates which bit plane (0 to 7) was used to embed the data in the image.
+
+3. **Data Length Extraction**:  
+   The length of the hidden binary data (in bits) is read from the next 11 pixels (32 bits in total). The program then calculates and displays the length in both bits and bytes.
+
+4. **Data Extraction**:  
+   The program uses the extracted bit position to read the hidden data from the image, ensuring that only the stored number of bits is recovered.
+
+5. **Saving the Data**:  
+   The extracted binary data is saved to the specified output file.
+
+### Example Execution
+
+#### Default Execution:
+```
+#> python stego_extract.py
+Magic Marker 'STEGO' found.
+Bit position: 2
+Data length: 2048 bits (256 bytes)
+```
+
+The extracted binary data has been saved to 'output.txt'.
+
+#### Custom Input and Output:
+```
+#> python stego_extract.py -r my_stego_image.png -w my_extracted_data.bin
+Magic Marker 'STEGO' found.
+Bit position: 2
+Data length: 2048 bits (256 bytes)
+```
+The extracted binary data has been saved to 'my_extracted_data.bin'.
+
+#### Image without magic marker:
+```
+#> python stego_extract.py -r image.png 
+Error: The Magic Marker 'STEGO' was not found. Aborting.
+```
 
 ## `stego_info.py` check for steganogrphic metadata 
 
@@ -23,8 +80,6 @@ This Python program checks if an image contains embedded data using a steganogra
 
 ### Parameters
 
-The program accepts the following command-line arguments:
-### Parameters:
 `-r`, `--read` (optional): Specifies the path to the image file that should be checked for embedded data. Default is `output_stego.png`.
 
 ### Examples
@@ -41,7 +96,7 @@ Data length: 2048 bits (256 bytes)
 #### Image without embedded data
 
 ```
-python check_stego_image.py -r my_image_without_data.png
+#> python check_stego_image.py -r my_image_without_data.png
 No embedded data found: The Magic Marker 'STEGO' was not found.
 ```
 
