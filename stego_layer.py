@@ -42,10 +42,11 @@ if __name__ == "__main__":
     # Create argument parser
     parser = argparse.ArgumentParser(description="Extract a specific bit plane from an image and display or save it.")
     parser.add_argument('-r', '--read', type=str, default='image.png', help='Path to the input image (default: image.png)')
+    parser.add_argument('-w', '--write', type=str, default='output_layer.png', help='Path to the output image (default: output_layer.png)')
     parser.add_argument('-B', '--bit', type=int, default=0, help='Bit position to extract (default: 0)')
     parser.add_argument('-n', '--noscale', action='store_true', help='Do not scale the extracted bit to 0 or 255.')
     parser.add_argument('-s', '--show', action='store_true', help='Display the extracted bit plane image.')
-    parser.add_argument('-w', '--write', type=str, default='output_layer.png', help='Path to the output image (default: output_stego.png)')
+
     # Parse arguments
     args = parser.parse_args()
 
