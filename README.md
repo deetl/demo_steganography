@@ -21,10 +21,13 @@ The steps performed by the program are:
 
 ## Parameters
 
-- `-r`, `--read`: The path to the input image file. The default is `image.png`.
-- `-b`, `--binary`: The path to the  file to be embedded into the image. The default is `input.txt`.
-- `-w`, `--write`: The path to the output image file. The default is `output_stego.png`. The file will always be saved in PNG format.
-- `-B`, `--bit`: Specifies the bit position (0-7) in each pixel's color channels where the binary data will be embedded. The default is bit position 0 (the least significant bit or LSB).
+`-r`, `--read`: The path to the input image file. The default is `image.png`.
+
+`-b`, `--binary`: The path to the  file to be embedded into the image. The default is `input.txt`.
+
+`-w`, `--write`: The path to the output image file. The default is `output_stego.png`. The file will always be saved in PNG format.
+
+`-B`, `--bit`: Specifies the bit position (0-7) in each pixel's color channels where the binary data will be embedded. The default is bit position 0 (the least significant bit or LSB).
 
 ### Example Execution
 
@@ -50,8 +53,6 @@ This command does the following:
 This Python program extracts binary data embedded in a steganographic image. It specifically checks for a **magic marker** (`STEGO`) in the least significant bits (LSBs) of the first few pixels to confirm the presence of hidden data. Once the marker is detected, the program reads the bit position where the data was embedded, extracts the length of the hidden binary data (in bits), and finally recovers the binary data using the stored bit position. The extracted data is saved in the specified binary file.
 
 ### Parameters
-
-The program accepts the following command-line parameters:
 
 `-r`, `--read` (optional): Path to the stego image file from which the data should be extracted. Default is `output_stego.png`.
 
