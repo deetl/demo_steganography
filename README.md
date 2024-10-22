@@ -6,7 +6,42 @@ This collection of tools demonstrates the simplest way to embed data into images
 The data is embedded into the LSB (least significant bit) of the image's pixels. This causes virtually no visible difference to the image. The first 29 bits (from the first 11 bytes of the image) are used to store a Magic Header (STEGO), the correct bit level, the data is stored in and the the length of the input data. This allows the tool to know how much data to extract when recovering the embedded information.
 
 # Tools
-## Embed
+## `stego_embed.py` embeds binary data into an image using steganography
+
+## Functionality
+
+This program embeds binary data (e.g., from a file) into an image using steganography. It does this by modifying specific bits of the image's pixel values while leaving the visual appearance of the image almost unchanged. The program allows the user to specify which bit position to embed the data in and also stores metadata (such as a magic marker, bit position, and data length) at the start of the image.
+
+The steps performed by the program are:
+1. **Clear the least significant bits (LSBs)** of all pixels up to pixel 29 to prepare for metadata.
+2. **Embed a magic marker (`STEGO`)** in the LSBs of the first 14 pixels to identify the image as a stego image.
+3. **Store the bit position** (where the data will be embedded) in the LSBs of the next 4 pixels.
+4. **Store the length of the binary data** (in bits) in the LSBs of the next 11 pixels.
+5. **Embed the actual binary data** in the specified bit position of the remaining pixels.
+
+## Parameters
+
+- `-r`, `--read`: The path to the input image file. The default is `image.png`.
+- `-b`, `--binary`: The path to the  file to be embedded into the image. The default is `input.txt`.
+- `-w`, `--write`: The path to the output image file. The default is `output_stego.png`. The file will always be saved in PNG format.
+- `-B`, `--bit`: Specifies the bit position (0-7) in each pixel's color channels where the binary data will be embedded. The default is bit position 0 (the least significant bit or LSB).
+
+### Example Execution
+
+#### Default Execution:
+```
+#> python stego_embed.py
+```
+This command will read the default image (`image.png`), embed the default binary file (`input.txt`) into the least significant bit (LSB) of the pixels, and output the stego image as `output_stego.png`.
+
+### Custom Execution with Options:
+```
+#> python stego_embed.py -r input_image.png -b my_binary_data.bin -w stego_image_output.png -B 3
+```
+This command does the following:
+- Reads `input_image.png`.
+- Embeds the file `my_binary_data.bin` into the 3rd bit (bit position 3) of each pixel's RGB channels.
+- Outputs the stego image as `stego_image_output.png` (the file will be saved as PNG, even if the input file has a different format). 
 
 ## `stego_extract.py` extract data from steganographic image
 
