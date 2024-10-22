@@ -29,7 +29,7 @@ The steps performed by the program are:
 
 `-B`, `--bit`: Specifies the bit position (0-7) in each pixel's color channels where the binary data will be embedded. The default is bit position 0 (the least significant bit or LSB).
 
-### Example Execution
+### Examples
 
 #### Default Execution:
 ```
@@ -37,7 +37,7 @@ The steps performed by the program are:
 ```
 This command will read the default image (`image.png`), embed the default binary file (`input.txt`) into the least significant bit (LSB) of the pixels, and output the stego image as `output_stego.png`.
 
-### Custom Execution with Options:
+#### Custom Execution with Options:
 ```
 #> python stego_embed.py -r input_image.png -b my_binary_data.bin -w stego_image_output.png -B 3
 ```
@@ -76,7 +76,7 @@ This Python program extracts binary data embedded in a steganographic image. It 
 5. **Saving the Data**:  
    The extracted binary data is saved to the specified output file.
 
-### Example Execution
+### Examples
 
 #### Default Execution:
 ```
