@@ -156,7 +156,7 @@ if __name__ == "__main__":
     # Create argument parser
     parser = argparse.ArgumentParser(description="Embed binary data into an image.")
     parser.add_argument('-r', '--read', type=str, default='image.png', help='Path to the image (default: image.png)')
-    parser.add_argument('-b', '--binary', type=str, default='input.txt', help='Path to the binary file (default: data.bin)')
+    parser.add_argument('-b', '--binary', type=str, default='input.txt', help='Path to the binary file (default: input.txt)')
     parser.add_argument('-w', '--write', type=str, default='output_stego.png', help='Path to the output image (default: output_stego.png)')
     parser.add_argument('-B', '--bit', type=int, default=0, help='Bit position to embed data (default: 0)')
 
